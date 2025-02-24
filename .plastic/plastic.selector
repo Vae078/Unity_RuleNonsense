@@ -1,0 +1,4 @@
+repository "Rule_Nonsense@tj_love_vae_sudaagreen@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"

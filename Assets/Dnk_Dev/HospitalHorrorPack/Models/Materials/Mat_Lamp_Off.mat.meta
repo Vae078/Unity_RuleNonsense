@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 43e1eaee58e6e1f42a8e6d905a406298
+timeCreated: 1481746910
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 80117
+  packageName: PBR - Hospital Horror Pack. Free
+  packageVersion: 1.1
+  assetPath: Assets/Dnk_Dev/HospitalHorrorPack/Models/Materials/Mat_Lamp_Off.mat
+  uploadId: 165932

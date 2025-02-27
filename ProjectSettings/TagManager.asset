@@ -7,6 +7,8 @@ TagManager:
   - Door
   - Cup
   - Desk
+  - Medicine
+  - Clue
   layers:
   - Default
   - TransparentFX

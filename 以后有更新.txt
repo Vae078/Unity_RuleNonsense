@@ -1,0 +1,9 @@
+git status
+
+git add .
+
+git commit -m “更新xxx”
+
+git pull origin master
+
+git push

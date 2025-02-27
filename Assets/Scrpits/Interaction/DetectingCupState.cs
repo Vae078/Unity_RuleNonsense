@@ -7,12 +7,12 @@ public class DetectingCupState : PlayerInteractionState
     private PlayerInteraction playerInteraction;
     private ControlCup controlCup;
     private string name;
+    private string tag;
 
     public DetectingCupState(PlayerInteraction interaction)
     {
         playerInteraction = interaction;
     }
-
 
     public void Enter()
     {
@@ -20,11 +20,17 @@ public class DetectingCupState : PlayerInteractionState
         if (playerInteraction.Hit(out hit))
         {
             name = hit.collider.name;
-            playerInteraction.PrintUI($"-F- ¼ñÆð{name}");
-            if (name == "Medicine")
+            tag = hit.collider.tag;
+            playerInteraction.PrintUI($"-F- ¼ñÆð{tag}");
+            if (tag == "Medicine")
             {
-                playerInteraction.PrintUI($"-E- ³ÔÏÂ{name}\n -F- ¼ñÆð{name}\n -G- ²ØÆð{name}");
+                playerInteraction.PrintUI($"-E- ³ÔÏÂ{tag}\n -F- ¼ñÆð{tag}\n -G- ²ØÆð{tag}");
             }
+            else if (tag == "Clue")
+            {
+                playerInteraction.PrintUI($"-E- ÔÄ¶Á{tag}\n -G-Ê°Æð{tag}");
+            }
+            
         }
     }
 
@@ -42,7 +48,7 @@ public class DetectingCupState : PlayerInteractionState
                 playerInteraction.ChangeState(holdingCup);
             }
 
-            if (name == "Medicine" && Input.GetKeyDown(KeyCode.E))
+            if (tag == "Medicine" && Input.GetKeyDown(KeyCode.E))
             {
                 //³ÔÒ©-->³ÔÒ©true+Ïú»ÙÒ©true
                 GameObject p = hit.collider.gameObject;
@@ -51,13 +57,26 @@ public class DetectingCupState : PlayerInteractionState
                 StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
             }
 
-            if (name == "Medicine" && Input.GetKeyDown(KeyCode.G))
+            if (tag == "Medicine" && Input.GetKeyDown(KeyCode.G))
             {
                 //²ØÆðÒ©
                 GameObject p = hit.collider.gameObject;
                 Object.Destroy(p);
                 StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
             }
+
+            if (tag == "Clue")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    GameRoot.GetInstacne().ClueWatch();
+                }
+                else if (Input.GetKeyDown(KeyCode.G))
+                {
+                    hit.collider.GetComponent<ItemObject>().Trigger();
+                }
+            }
+
         }
         else
         {

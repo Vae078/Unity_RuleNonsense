@@ -99,6 +99,28 @@ public class GameRoot : MonoBehaviour
         StartCoroutine(waitForSubtitle());
     }
 
+
+    public void ClueWatch()
+    {
+        CluePanel cluePanel = new CluePanel();
+        UIManager_Root.Push(cluePanel);
+    }
+
+    public void ClueWatch2()
+    {
+        CluePanel2 cluePanel2 = new CluePanel2();
+        UIManager_Root.Push(cluePanel2);
+    }
+
+    //通过访问Panel工厂来Push Panel
+    public void GetPanel(string panel)
+    {
+        UIManager_Root.Push(PanelFactory.CreatPanel(panel));
+
+    }
+
+
+
     private void getTempText(string _text)
     {
         tempText = _text;

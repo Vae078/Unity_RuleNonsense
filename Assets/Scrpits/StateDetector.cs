@@ -10,7 +10,9 @@ public enum GameState
     isEatMedicine,  //玩家是否吃药
     isMedicineDestory,    //药物是否销毁
     isRoomClean,      //房间是否整洁
-    isDoorTouch       //房门是否被动
+    isDoorTouch,       //房门是否被动
+    isCupRight,       //水杯是否摆放正确
+    isThermometerRight  // 体温计是否摆放正确
 }
 
 public class StateDetector : MonoBehaviour
@@ -46,7 +48,7 @@ public class StateDetector : MonoBehaviour
        if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             //------ 加载存档数据
 
             InitializeDefaultState();
@@ -65,6 +67,8 @@ public class StateDetector : MonoBehaviour
         SetStateIfMissing(GameState.isMedicineDestory, false);
         SetStateIfMissing(GameState.isRoomClean, false);
         SetStateIfMissing(GameState.isDoorTouch, false);
+        SetStateIfMissing(GameState.isCupRight, false);
+        SetStateIfMissing(GameState.isThermometerRight, false);
     }
 
     

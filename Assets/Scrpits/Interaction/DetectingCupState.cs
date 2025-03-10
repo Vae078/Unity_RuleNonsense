@@ -21,16 +21,19 @@ public class DetectingCupState : PlayerInteractionState
         {
             name = hit.collider.name;
             tag = hit.collider.tag;
-            playerInteraction.PrintUI($"-F- 捡起{tag}");
             if (tag == "Medicine")
             {
-                playerInteraction.PrintUI($"-E- 吃下{tag}\n -F- 捡起{tag}\n -G- 藏起{tag}");
+                playerInteraction.PrintUI($"-E- EAT  {tag}\n -F- PICK UP  {tag}\n");
             }
             else if (tag == "Clue")
             {
-                playerInteraction.PrintUI($"-E- 阅读{tag}\n -G-拾起{tag}");
+                playerInteraction.PrintUI($"-E- READ  {tag}\n -G- PICK UP  {tag}");
             }
-            
+            else
+            {
+                playerInteraction.PrintUI($"-F- PICK UP  {name}");
+            }
+
         }
     }
 
@@ -57,13 +60,13 @@ public class DetectingCupState : PlayerInteractionState
                 StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
             }
 
-            if (tag == "Medicine" && Input.GetKeyDown(KeyCode.G))
-            {
-                //藏起药
-                GameObject p = hit.collider.gameObject;
-                Object.Destroy(p);
-                StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
-            }
+            //if (tag == "Medicine" && Input.GetKeyDown(KeyCode.G))
+            //{
+            //    //藏起药
+            //    GameObject p = hit.collider.gameObject;
+            //    Object.Destroy(p);
+            //    StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
+            //}
 
             if (tag == "Clue")
             {

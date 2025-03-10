@@ -22,7 +22,7 @@ public class holdingCupState : PlayerInteractionState
     public void Enter()
     {
         string name = controlCup.name;
-        playerInteraction.PrintUI($" -F- ╥еоб{name}");
+        playerInteraction.PrintUI($" -F- Lay down  {name}");
        
     }
 

@@ -16,8 +16,6 @@ public class UI_itemSlot : MonoBehaviour
         slotButton.onClick.AddListener(OpenPanel);
     }
 
-
-
     public void UpdateSlot(InventoryItem _newItem)
     {
         item = _newItem;
@@ -33,17 +31,11 @@ public class UI_itemSlot : MonoBehaviour
             {
                 itemText.text = "";
             }
-
         }
     }
-
-
     public void OpenPanel()
     {
         GameRoot.GetInstacne().GetPanel(item.data.linkedPanelType);
         
     }
-
-
-
 }

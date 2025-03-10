@@ -23,6 +23,8 @@ public class BirdDor_FindPlayer : EnemyState
 
     public void Update()
     {
+        Debug.Log("我在findState");
+
         DoorDetect();
         if (!isArriveDoor)
         {
@@ -30,19 +32,17 @@ public class BirdDor_FindPlayer : EnemyState
         }
         else
         {
-            birdDor.agent.SetDestination(PlayerMove.instacnce.transform.position);
+            birdDor.agent.SetDestination(birdDor.navi_4.transform.position);
         }
 
-        distance = Vector3.Distance(birdDor.transform.position, PlayerMove.instacnce.transform.position);
-        if (distance < 4)
+        distance = Vector3.Distance(birdDor.transform.position, birdDor.navi_4.transform.position);
+        if (distance < 1)
         {
             birdDor.agent.isStopped = true;
             birdDor.ChangeState(birdDor.checkState);
         }
-
         else
             birdDor.agent.isStopped = false;
-
     }
 
     public void Exit()
@@ -62,11 +62,19 @@ public class BirdDor_FindPlayer : EnemyState
             
             if (hit.collider.tag == "Door")
             {
-                
-
-                IDoorController doorController = hit.collider.GetComponent<IDoorController>();
-                doorController.OpenDoor();
-                isArriveDoor = true;
+                ControlDoor doorController = hit.collider.GetComponent<ControlDoor>();
+                doorController.OpenDoor((success)=>
+                { 
+                    if (success)
+                    {
+                        isArriveDoor = true;
+                       // SubTitle.GetInstance().BirdDorTalk("我开门了");
+                    }
+                    else
+                    {
+                        //SubTitle.GetInstance().BirdDorTalk("我在尝试开门");
+                    }
+                });
             }
         }
     }

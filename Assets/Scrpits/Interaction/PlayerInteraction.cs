@@ -46,8 +46,6 @@ public class PlayerInteraction: MonoBehaviour
 
     private void Start()
     {
-        
-
         mainCamera = Camera.main;
 
         backGround = GetComponentInChildren<Image>();
@@ -85,15 +83,12 @@ public class PlayerInteraction: MonoBehaviour
         currentState.Enter();
     }
 
-
-    //控制UGUI，UI提示显示两秒钟后消失
     public void PrintUI(string write)
     {
         HideUI();
         textCompent.text = write;
         textCompent.gameObject.SetActive(true);
         backGround.enabled = true;
-
     }
 
     public void HideUI()

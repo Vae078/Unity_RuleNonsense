@@ -37,9 +37,8 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-
         if (!canMove)
-        {// 如果不允许移动，将水平和垂直速度置为 0，保持垂直方向的速度不变
+        {// 如果不允许移动，将水平和垂直速度置为0，保持垂直方向的速度不变
             Vector3 zeroVelocity = Vector3.zero;
             zeroVelocity.y = rb.velocity.y;
             rb.velocity = zeroVelocity;
@@ -57,7 +56,8 @@ public class PlayerMove : MonoBehaviour
             rb.velocity = zeroVelocity;
             animator.SetBool("isWalk", false);
             return;
-        }else
+        }
+        else
         {
             animator.SetBool("isWalk", true);
         }
@@ -70,6 +70,5 @@ public class PlayerMove : MonoBehaviour
         Vector3 velocity = moveDirection * speed;
         velocity.y = rb.velocity.y;
         rb.velocity = velocity;
-
     }
 }

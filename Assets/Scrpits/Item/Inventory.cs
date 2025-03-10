@@ -19,7 +19,6 @@ public class Inventory : MonoBehaviour
             instance = this;
         else
             Destroy(gameObject);
-
     }
 
     private void Start()

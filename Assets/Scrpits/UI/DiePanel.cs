@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DiePanel : BasePanel
 {
@@ -17,8 +19,17 @@ public class DiePanel : BasePanel
     public override void OnStart()
     {
         base.OnStart();
+        UIMethod.GetInstance().GetOrAddSingleComponentInChild<Button>(ActiveObj, "Button").onClick.AddListener(Restart); //检测返回Button，增加监听事件
+        FirstPersonalLook.Instance.UnlockCursor();// 显示鼠标
 
 
+    }
+
+    private void Restart()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // 重新加载场景
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     public override void OnEnable()

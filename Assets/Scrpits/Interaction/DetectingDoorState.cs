@@ -15,7 +15,7 @@ public class DetectingDoorState : PlayerInteractionState
     public void Enter()
     {
         if (!playerInteraction.isChangeUI)
-            playerInteraction.PrintUI("--F 使用门--");
+            playerInteraction.PrintUI("--F USE DOOR--");
     }
 
     public void Update()
@@ -23,7 +23,7 @@ public class DetectingDoorState : PlayerInteractionState
         RaycastHit hit;
         if (playerInteraction.Hit(out hit))
         {
-            IDoorController doorController = hit.collider.GetComponent<IDoorController>();
+            ControlDoor doorController = hit.collider.GetComponent<ControlDoor>();
             if (doorController != null && doorController is ControlDoor controlDoor)
             {
                 if (Input.GetKeyDown(KeyCode.F))
@@ -37,7 +37,7 @@ public class DetectingDoorState : PlayerInteractionState
                         //当门锁的时候尝试开门，则触发警报
                         GameState doorState = GameState.isDoorTouch;
                         StateDetector.Instance.SetState(doorState, true);
-                        playerInteraction.PrintUI("---门已锁---");
+                        playerInteraction.PrintUI("---DOOR HAS CLOCKED---");
                     }
                 }
             }

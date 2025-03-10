@@ -14,10 +14,10 @@ public class SubTitlePanel : BasePanel
     public Image image;
     public string text;
 
+
     public SubTitlePanel(string _text) : base(uIType)
     {
         text = _text;
-      
     }
 
     public override void OnStart()

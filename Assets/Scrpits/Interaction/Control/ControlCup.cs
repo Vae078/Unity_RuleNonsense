@@ -7,7 +7,7 @@ public class ControlCup : MonoBehaviour
     public Transform cupTransform;
     public Camera playerCamera;
     public float pickUpDistance = 3f;
-    public Vector3 holdPositionOffest = new Vector3(2f, -0.5f, 1.5f); //手持位置偏移
+    public Vector3 holdPositionOffest = new Vector3(1f, 0.1f, 0.5f); //手持位置偏移
 
     private Rigidbody cupRigidbody;
     private Collider cupCollider;
@@ -28,9 +28,7 @@ public class ControlCup : MonoBehaviour
         //禁用物理效果
         cupRigidbody.isKinematic = true;
         cupCollider.enabled = false;
-
         initialRotation = cupTransform.rotation;
-
     }
 
   

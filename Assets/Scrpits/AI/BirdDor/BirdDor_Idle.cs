@@ -81,7 +81,7 @@ public class BirdDor_Idle : EnemyState
         {
             
             birdDor.ChangeState(birdDor.findState);
-            GameRoot.GetInstacne().SubtitleControl_BirDor("BirdDor“™¿¥¡® ≤‚ ‘≤‚ ‘≤‚ ‘≤‚ ‘");
+            //SubTitle.GetInstance().BirdDorTalk("Œ““™¿¥¡À~~~≤‚ ‘≤‚ ‘");
         }
     }
 }

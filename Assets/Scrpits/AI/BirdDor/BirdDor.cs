@@ -5,10 +5,10 @@ using UnityEngine.AI;
 
 public class BirdDor : Enemy
 {
-
     public Transform navi_1;
     public Transform navi_2;
     public Transform navi_3;
+    public Transform navi_4;
     
 
 

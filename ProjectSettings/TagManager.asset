@@ -9,6 +9,7 @@ TagManager:
   - Desk
   - Medicine
   - Clue
+  - Floor
   layers:
   - Default
   - TransparentFX

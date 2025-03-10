@@ -45,7 +45,7 @@ public class GameRoot : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         UIManager_Root.CanvasObj = UIMethod.GetInstance().FindCanvas();
         tempText = null;
     }
@@ -85,6 +85,8 @@ public class GameRoot : MonoBehaviour
         UIManager_Root.Push(diePanel);
     }
 
+
+    //这个当废案了
     public void SubtitleControl_BirDor(string text)
     {
         Debug.Log($"text:{text},tempText{tempText}");
@@ -94,6 +96,7 @@ public class GameRoot : MonoBehaviour
         }
         getTempText(text);
         text = "鸟嘴医生:" + text;
+
         SubTitlePanel subTitlePanel = new SubTitlePanel(text);
         UIManager_Root.Push(subTitlePanel);
         StartCoroutine(waitForSubtitle());
@@ -119,8 +122,6 @@ public class GameRoot : MonoBehaviour
 
     }
 
-
-
     private void getTempText(string _text)
     {
         tempText = _text;
@@ -131,4 +132,6 @@ public class GameRoot : MonoBehaviour
         yield return new WaitForSeconds(3f);
         UIManager_Root.Pop(false);
     }
+
+
 }

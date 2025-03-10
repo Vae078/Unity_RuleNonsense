@@ -3,32 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ControlDoor : MonoBehaviour, IDoorController
+public class ControlDoor : MonoBehaviour
 {
     private Animator anim;
     public bool isDoorOpen = false;
-
-   
-
     public Transform doorTransform;
+    private Coroutine openDoorCoroutine;
+
     private void Start()
     {
         anim = GetComponent<Animator>();
         doorTransform = transform;
-
     }
 
-
-    //实现接口的开关门方法
-    public void OpenDoor()
+    public void OpenDoor(System.Action<bool> onComplete)
     {
-        if (!isDoorOpen)
+        if (!isDoorOpen && openDoorCoroutine == null)
         {
-            anim.SetTrigger("open");
-    
-            isDoorOpen = true;
+            openDoorCoroutine = StartCoroutine(CheckDoorRotation(onComplete));
+        }
+        else
+        {
+            onComplete?.Invoke(false);
         }
     }
+
+    private IEnumerator CheckDoorRotation(System.Action<bool> onComplete)
+    {
+        float closeEuler_y = transform.localEulerAngles.y;
+        anim.SetTrigger("open");
+        float timeout = 1f;
+        float startTime = Time.time;
+        bool success = false;
+        while (Time.time < startTime + timeout)
+        {
+            float current_y = transform.localEulerAngles.y;
+            if (Mathf.Abs(current_y - closeEuler_y) > 50f)
+            {
+                success = true;
+                break;
+            }
+            yield return null;  //等待下一帧
+        }
+
+        isDoorOpen = success;
+        openDoorCoroutine = null;
+        onComplete?.Invoke(success);
+    }
+
+
+
     public void CloseDoor()
     {
         if (isDoorOpen)
@@ -53,7 +77,16 @@ public class ControlDoor : MonoBehaviour, IDoorController
         {
             if (isDoorOpen == false)
             {
-                OpenDoor();
+                OpenDoor((success) =>
+                {
+                    if (success)
+                    {
+                    }
+                    else
+                    {
+                        Debug.Log("门卡住了");
+                    }
+                });
             }
             else if (isDoorOpen == true)
             {

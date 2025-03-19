@@ -173,5 +173,7 @@ public class BirdDor_Check :EnemyState
 
         // 重置动画状态（可选）
         birdDor.anim.SetBool("kill", false);
+ 
+    
     }
 }

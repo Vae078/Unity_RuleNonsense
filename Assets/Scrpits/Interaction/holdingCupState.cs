@@ -22,14 +22,16 @@ public class holdingCupState : PlayerInteractionState
     public void Enter()
     {
         string name = controlCup.name;
-        playerInteraction.PrintUI($" -F- Lay down  {name}");
-       
+        playerInteraction.PrintUI($" -F- Lay down  {name}"); 
     }
 
     public void Update()
     {
-        controlCup.cupTransform.position = controlCup.playerCamera.transform.TransformPoint(controlCup.holdPositionOffest);
-        controlCup.cupTransform.rotation = controlCup.initialRotation;
+        //controlCup.cupTransform.position = controlCup.playerCamera.transform.TransformPoint(controlCup.holdPositionOffest);
+        //controlCup.cupTransform.rotation = controlCup.initialRotation;
+        controlCup.cupTransform.position = ContorlIK.GetInstance().objectTranform.position;
+        controlCup.cupTransform.rotation = ContorlIK.GetInstance().objectTranform.rotation;
+        ContorlIK.GetInstance().Holding();
 
         if (Input.GetKeyDown(KeyCode.F))
         {

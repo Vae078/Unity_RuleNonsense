@@ -10,6 +10,7 @@ public class ControlDoor : MonoBehaviour
     public Transform doorTransform;
     private Coroutine openDoorCoroutine;
 
+
     private void Start()
     {
         anim = GetComponent<Animator>();

@@ -23,17 +23,15 @@ public class ControlCup : MonoBehaviour
         
     }
 
-    public void pickCup()
+    public void pickCup() //捡起物品
     {
         //禁用物理效果
         cupRigidbody.isKinematic = true;
         cupCollider.enabled = false;
-        initialRotation = cupTransform.rotation;
+        //initialRotation = cupTransform.rotation;
+        //cupRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
     }
-
-  
-
-    public void putCup()
+    public void putCup()  //放下物品
     {
         cupTransform.SetParent(null);
 
@@ -56,7 +54,9 @@ public class ControlCup : MonoBehaviour
             cupTransform.position = rayOrigin + rayDirection * pickUpDistance * 2;
         }
         //添加少许向前的力
-        cupRigidbody.AddForce(playerCamera.transform.forward * 2f, ForceMode.Impulse);
+        cupRigidbody.AddForce(playerCamera.transform.forward * 0.1f, ForceMode.Impulse);
+        ContorlIK.GetInstance().UnHolding();
     }
 
 }
+

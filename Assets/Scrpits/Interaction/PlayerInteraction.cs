@@ -13,8 +13,7 @@ public class PlayerInteraction: MonoBehaviour
     public Camera mainCamera;
     public TextMeshProUGUI textCompent;
     public Image backGround;
-
-
+   
     //-----------------×´Ì¬»ú------------------
     private PlayerInteractionState currentState;
     public bool isChangeUI;
@@ -66,8 +65,6 @@ public class PlayerInteraction: MonoBehaviour
         currentState.Update();
         
     }
-
-  
 
     public holdingCupState GetHoldingCupState(ControlCup cup)
     {

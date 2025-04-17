@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 鸟嘴医生检查状态 观察者
+/// 进入此状态时订阅所有规则状态，同时获取所有规则状态当前的bool值
+/// 以当前的规则状态值作为判断条件
+/// 确保了所有规则的同步
+/// </summary>
 public class BirdDor_Check :EnemyState
 {
     private BirdDor birdDor;

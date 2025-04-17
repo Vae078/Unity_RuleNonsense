@@ -51,7 +51,6 @@ public class UIMethod
     /// <typeparam name="T">对应组件</typeparam>
     /// <param name="Get_obj">目标对象</param>
     /// <returns></returns>
-
     public T AddOrGetComponent<T>(GameObject Get_obj) where T : Component
     {
         T compent = Get_obj.GetComponent<T>();

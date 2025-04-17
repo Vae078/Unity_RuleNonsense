@@ -13,6 +13,7 @@ public class UIManager
     {
         if (instance == null)
         {
+            instance = new UIManager();
             return instance;
         }
         else
@@ -41,6 +42,7 @@ public class UIManager
            
         }
 
+        // 从Resource文件夹加载一个ui预制体，将其实例化为一个新的游戏对象，并添加到Canvas上
         GameObject gameObject = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>(uIType.Path),CanvasObj.transform);
         return gameObject;
     }
@@ -55,6 +57,7 @@ public class UIManager
     {
         Debug.Log($"{basePanel.uiType.Name}被Push进stack");
 
+        //如果有面板，将栈顶面板禁用
         if (stack_ui.Count > 0)
         {
             stack_ui.Peek().OnDisable();

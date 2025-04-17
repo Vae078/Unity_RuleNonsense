@@ -13,6 +13,10 @@ public class GameRoot : MonoBehaviour
     private static GameRoot instance;
     private string tempText;
 
+    [Header("各种手持物品(背包)")]
+    [SerializeField] GameObject lighting;
+    [SerializeField] GameObject knife;
+
 
     // 以下是用于控制各种组件的bool
     public bool isPackageOpen;  //用于控制背包
@@ -103,6 +107,13 @@ public class GameRoot : MonoBehaviour
     }
 
 
+    public void UseLighting()          // 同时我还需要把这个lighting(gameObject) 给加入到背包中
+    {
+        lighting.SetActive(true);
+    }
+
+
+    // 展示线索界面
     public void ClueWatch()
     {
         CluePanel cluePanel = new CluePanel();

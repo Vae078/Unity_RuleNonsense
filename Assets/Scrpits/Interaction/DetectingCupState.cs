@@ -23,15 +23,19 @@ public class DetectingCupState : PlayerInteractionState
             tag = hit.collider.tag;
             if (tag == "Medicine")
             {
-                playerInteraction.PrintUI($"-E- EAT  {tag}\n -F- PICK UP  {tag}\n");
+                playerInteraction.PrintUI($"-E- 吃  {name}\n -F- 捡起  {name}\n");
             }
-            else if (tag == "Clue")
+            else if (tag == "item")
             {
-                playerInteraction.PrintUI($"-E- READ  {tag}\n -G- PICK UP  {tag}");
+                playerInteraction.PrintUI($"-E- 使用  {name}\n -G- 放入背包  {name}");
+            }
+            else if(tag=="lighting")
+            {
+                playerInteraction.PrintUI($"-E- 使用  {name}\n ");
             }
             else
             {
-                playerInteraction.PrintUI($"-F- PICK UP  {name}");
+                playerInteraction.PrintUI($"-F- 捡起  {name}");
             }
 
         }
@@ -60,16 +64,9 @@ public class DetectingCupState : PlayerInteractionState
                 StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
             }
 
-            //if (tag == "Medicine" && Input.GetKeyDown(KeyCode.G))
-            //{
-            //    //藏起药
-            //    GameObject p = hit.collider.gameObject;
-            //    Object.Destroy(p);
-            //    StateDetector.Instance.SetState(GameState.isMedicineDestory, true);
-            //}
-
-            if (tag == "Clue")
+            if (tag == "item")
             {
+                
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     GameRoot.GetInstacne().ClueWatch();
@@ -77,6 +74,15 @@ public class DetectingCupState : PlayerInteractionState
                 else if (Input.GetKeyDown(KeyCode.G))
                 {
                     hit.collider.GetComponent<ItemObject>().Trigger();
+                }
+                
+            }
+
+            if (tag == "lighting")
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    GameRoot.GetInstacne().UseLighting();
                 }
             }
 

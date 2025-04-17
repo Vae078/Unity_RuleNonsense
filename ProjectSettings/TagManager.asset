@@ -10,6 +10,9 @@ TagManager:
   - Medicine
   - Clue
   - Floor
+  - text
+  - item
+  - lighting
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - PickUpable
   - Door
   - Player
-  - 
+  - ignoreLayer
   - 
   - 
   - 

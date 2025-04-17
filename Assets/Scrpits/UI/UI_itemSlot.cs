@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class UI_itemSlot : MonoBehaviour
 {
@@ -13,7 +14,35 @@ public class UI_itemSlot : MonoBehaviour
     private void Awake()
     {
         slotButton = GetComponent<Button>();
-        slotButton.onClick.AddListener(OpenPanel);
+        slotButton.onClick.AddListener(UseItem);    //左键单击事件
+    }
+
+    private void Start()
+    {
+        //添加Evnent Trigger
+        EventTrigger trigger = GetComponent<EventTrigger>();
+        if (trigger == null)
+        {
+            trigger = gameObject.AddComponent<EventTrigger>();
+        }
+        EventTrigger.Entry rightClickEntry = new EventTrigger.Entry();
+        rightClickEntry.eventID = EventTriggerType.PointerClick;
+        rightClickEntry.callback.AddListener((data) => OnPointerClick((PointerEventData)data));
+        trigger.triggers.Add(rightClickEntry);
+
+    }
+
+    // 右键单击删除物品
+    private void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Debug.Log("右键单击");
+            if (item != null)
+            {
+                Inventory.instance.RemoveItem(item.data);
+            }
+        }
     }
 
     public void UpdateSlot(InventoryItem _newItem)
@@ -31,11 +60,25 @@ public class UI_itemSlot : MonoBehaviour
             {
                 itemText.text = "";
             }
+        }else
+        {
+            itemImage.sprite = null;
+            itemText.text = "";
         }
     }
-    public void OpenPanel()
+
+    public void ClearSlot()
     {
-        GameRoot.GetInstacne().GetPanel(item.data.linkedPanelType);
-        
+        item = null;             // 清空引用
+        itemImage.sprite = null; // 清空图片
+        itemImage.color = Color.clear; // 设置为透明
+        itemText.text = "";      // 清空数量文本
+    }
+
+
+
+    public void UseItem()
+    {
+        GameRoot.GetInstacne().GetPanel(item.data.linkedPanelType);   
     }
 }

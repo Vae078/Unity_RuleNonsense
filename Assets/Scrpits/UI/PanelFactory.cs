@@ -21,7 +21,4 @@ public static class PanelFactory
             throw new ArgumentException($"未知的面板类型：{panelType}");
     }
 
-
-
-
 }

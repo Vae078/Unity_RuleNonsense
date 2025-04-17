@@ -4,8 +4,8 @@ using System;
 [Serializable]
 public class InventoryItem
 {
-    public ItemData data;
-    public int stackSize;
+    public ItemData data;    // 物品信息
+    public int stackSize;   
 
     public InventoryItem(ItemData _newItemData)
     {
